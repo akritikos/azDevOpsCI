@@ -1,3 +1,8 @@
+parameters:
+  - name: sdkVersion
+    default: '5.x'
+    type: string
+
 stages:
 - stage: Build
   displayName: Builds artifacts
@@ -8,4 +13,7 @@ stages:
     - checkout: self
       fetchDepth: 1
     # - template: ../../steps/dotnet/nuget-cache.yml
+    - template: ../../steps/dotnet/install-sdk.yml
+      parameters:
+        sdkVersion: ${{ parameters.sdkVersion }}
     - template: ../../steps/dotnet/restore.yml
