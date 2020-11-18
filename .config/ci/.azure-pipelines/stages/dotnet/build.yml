@@ -1,13 +1,19 @@
 parameters:
-- name: sdkVersion
-  default: '5.x'
-  type: string
-- name: configuration
-  type: string
-  default: $(BuildConfiguration)
-- name: buildArgs
-  type: string
-  default: ''
+  - name: sdkVersion
+    default: '5.x'
+    type: string
+  - name: configuration
+    type: string
+    default: $(BuildConfiguration)
+  - name: buildArgs
+    type: string
+    default: ''
+  - name: publishWeb
+    type: boolean
+    default: false
+  - name: outputPath
+    type: string
+    default: $(build.artifactStagingDirectory)/publish
 
 stages:
 - stage: Build
@@ -25,5 +31,11 @@ stages:
     - template: ../../steps/dotnet/restore.yml
     - template: ../../steps/dotnet/build.yml
       parameters:
-        configuration: ${{ parameters.buildArgs }}
+        configuration: ${{ parameters.configuration }}
         buildArgs: ${{ parameters.buildArgs }}
+    - template: ../../steps/dotnet/build.yml
+      parameters:
+        configuration: ${{ parameters.configuration }}
+        publishWeb: ${{ parameters.publishWeb }}
+        outputPath: ${{ parameters.outputPath }}
+
