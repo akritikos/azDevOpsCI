@@ -1,0 +1,27 @@
+parameters:
+  - name: sdkVersion
+    default: '5.x'
+    type: string
+  - name: configuration
+    type: string
+    default: $(BuildConfiguration)
+  - name: buildArgs
+    type: string
+    default: ''
+
+jobs:
+- job: Test-
+  steps:
+  - checkout: self
+  # - template: ../../steps/dotnet/nuget-cache.yml
+  - template: ../../steps/dotnet/install-sdk.yml
+    parameters:
+      sdkVersion: ${{ parameters.sdkVersion }}
+  - template: ../../steps/dotnet/restore.yml
+  - template: ../../steps/dotnet/build.yml
+    parameters:
+      configuration: ${{ parameters.configuration }}
+      buildArgs: ${{ parameters.buildArgs }}
+  - template: ../../steps/dotnet/test.yml
+    parameters:
+      configuration: ${{ parameters.configuration }}
