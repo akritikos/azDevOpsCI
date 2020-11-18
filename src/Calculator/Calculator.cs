@@ -8,6 +8,4 @@ namespace Calculator
 
 		public static int Add(int x, int y) => x + y;
 	}
-
-	public abstract record Foo(int test);
 }
