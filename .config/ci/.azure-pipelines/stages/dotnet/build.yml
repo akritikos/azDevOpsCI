@@ -19,7 +19,7 @@ parameters:
     default: $(build.artifactStagingDirectory)/publish
   - name: publishArtifactName
     type: string
-    default: 'drop'
+    default: '$(Build.Repository.Name)-$(Build.BuildNumber)'
 
 
 stages:
