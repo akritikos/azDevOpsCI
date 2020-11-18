@@ -2,18 +2,14 @@
   <PropertyGroup Label="Project">
     <!-- Prepend organization name to default namespace -->
     <RootNamespace>Kritikos.$(MSBuildProjectName)</RootNamespace>
+    <!-- Disable warnings on preview SDK versions -->
+    <SuppressNETCoreSdkPreviewMessage>true</SuppressNETCoreSdkPreviewMessage>
     <!-- Generate documentation file and ignore warnings for undocumented elements -->
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <NoWarn>1591</NoWarn>
     <!-- Error out upon trying to package projects marked as not packable -->
     <WarnOnPackingNonPackableProject>true</WarnOnPackingNonPackableProject>
-    <!-- Disable warnings on preview SDK versions -->
-    <SuppressNETCoreSdkPreviewMessage>true</SuppressNETCoreSdkPreviewMessage>
-    <!-- We only target a single framework hence the subdir is not needed -->
-    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-    <!-- Same but for runtime assemblies -->
-    <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
-    <!-- Enable lock files -->
+        <!-- Enable lock files -->
     <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
     <!-- Disable nugets from SDK fallback folders -->
     <DisableImplicitNuGetFallbackFolder>true</DisableImplicitNuGetFallbackFolder>

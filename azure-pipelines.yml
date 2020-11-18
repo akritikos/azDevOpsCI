@@ -1,0 +1,27 @@
+resources:
+  repositories:
+    - repository: self
+      checkoutOptions:
+        submodules: true
+        lfs: true
+trigger:
+  batch: true
+  branches:
+    include:
+      - master
+      - develop
+      - feature/*
+      - bugfix/*
+      - release/*
+  paths:
+    include:
+      - azure-pipelines.yml
+      - src/*
+      - tests/*
+pool:
+  vmImage: ubuntu-latest
+stages:
+  - stage: Version
+    displayName: Set Semantic Version
+    jobs:
+      - template: .config/ci/.azure-pipelines/jobs/version.yml
