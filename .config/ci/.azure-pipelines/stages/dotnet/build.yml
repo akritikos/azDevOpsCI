@@ -1,7 +1,13 @@
 parameters:
-  - name: sdkVersion
-    default: '5.x'
-    type: string
+- name: sdkVersion
+  default: '5.x'
+  type: string
+- name: configuration
+  type: string
+  default: $(BuildConfiguration)
+- name: buildArgs
+  type: string
+  default: ''
 
 stages:
 - stage: Build
@@ -17,3 +23,7 @@ stages:
       parameters:
         sdkVersion: ${{ parameters.sdkVersion }}
     - template: ../../steps/dotnet/restore.yml
+    - template: ../../steps/dotnet/build.yml
+      parameters:
+        configuration: ${{ parameters.buildArgs }}
+        buildArgs: ${{ parameters.buildArgs }}
