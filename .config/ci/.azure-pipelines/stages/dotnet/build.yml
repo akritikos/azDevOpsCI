@@ -14,6 +14,13 @@ parameters:
   - name: outputPath
     type: string
     default: $(build.artifactStagingDirectory)/publish
+  - name: pathtoPublish
+    type: string
+    default: $(build.artifactStagingDirectory)/publish
+  - name: publishArtifactName
+    type: string
+    default: 'drop'
+
 
 stages:
 - stage: Build
@@ -38,4 +45,8 @@ stages:
         configuration: ${{ parameters.configuration }}
         publishWeb: ${{ parameters.publishWeb }}
         outputPath: ${{ parameters.outputPath }}
+    - template: ../../steps/general/publish-artifact.yml
+      parameters:
+        pathtoPublish: ${{ parameters.pathtoPublish }}
+        artifactName: ${{ parameters.publishArtifactName }}
 
