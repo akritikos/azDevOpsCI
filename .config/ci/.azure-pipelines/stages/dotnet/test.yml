@@ -11,7 +11,7 @@ parameters:
 
 stages:
 - stage: Test
-  displayName: Builds artifacts
+  displayName: Run tests
   dependsOn: Version
   jobs:
     - template: ../../jobs/dotnet/test.yml

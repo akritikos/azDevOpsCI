@@ -14,7 +14,7 @@ parameters:
 
 jobs:
 - job:
-  displayName: 'Running tests on ${{ parameters.image }}'
+  displayName: on ${{ parameters.image }}
   pool:
     vmImage: ${{ parameters.image }}
   steps:
