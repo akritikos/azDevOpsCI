@@ -16,4 +16,4 @@ steps:
     command: 'publish'
     configuration: ${{ parameters.configuration }}
     publishWebProjects: ${{ parameters.publishWeb }}
-    arguments: '--no-restore --no-build --no-self-contained --nologo -o ${{ parameters.outputPath }}'
+    arguments: 'src/**/*.csproj --no-restore --no-build --no-self-contained --nologo -o ${{ parameters.outputPath }}'
