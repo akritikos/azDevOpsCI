@@ -26,6 +26,9 @@ parameters:
   - name: packDirectory
     type: string
     default: $(build.artifactStagingDirectory)/nuget
+  - name: nugetArtifactName
+    type: string
+    default: 'nuget'
 
 
 stages:
@@ -60,4 +63,8 @@ stages:
         configuration: ${{ parameters.configuration }}
         projectsToPack: ${{ parameters.projectsToPack }}
         packDirectory: ${{ parameters.packDirectory }}
+    - template: ../../steps/general/publish-artifact.yml
+      parameters:
+        pathtoPublish: ${{ parameters.packDirectory }}
+        artifactName: ${{ parameters.nugetArtifactName }}
 
