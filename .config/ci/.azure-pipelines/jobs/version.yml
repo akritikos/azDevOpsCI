@@ -1,3 +1,4 @@
+jobs:
 - job: Version
   steps:
     - template: ../steps/general/dotnet-tool.yml
