@@ -20,6 +20,12 @@ parameters:
   - name: publishArtifactName
     type: string
     default: '$(Build.Repository.Name)-$(Build.BuildNumber)'
+  - name: projectsToPack
+    type: string
+    default: 'src/*/*.csproj'
+  - name: packDirectory
+    type: string
+    default: $(build.artifactStagingDirectory)/nuget
 
 
 stages:
@@ -49,4 +55,9 @@ stages:
       parameters:
         pathtoPublish: ${{ parameters.pathtoPublish }}
         artifactName: ${{ parameters.publishArtifactName }}
+    - template: ../../steps/dotnet/pack.yml
+      parameters:
+        configuration: ${{ parameters.configuration }}
+        projectsToPack: ${{ parameters.projectsToPack }}
+        packDirectory: ${{ parameters.packDirectory }}
 
