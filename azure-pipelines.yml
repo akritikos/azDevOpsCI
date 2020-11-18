@@ -21,6 +21,7 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 stages:
+  - template: .config/ci/.azure-pipelines/stages/general/semver.yml
   - stage: Version
     displayName: Set Semantic Version
     jobs:
