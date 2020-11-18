@@ -1,4 +1,7 @@
 parameters:
+  - name: image
+    type: string
+    default: ubuntu-latest
   - name: sdkVersion
     default: '5.x'
     type: string
@@ -10,7 +13,10 @@ parameters:
     default: ''
 
 jobs:
-- job: Test-
+- job:
+  displayName: 'Running tests on ${{ parameters.image }}'
+  pool:
+    vmImage: ${{ parameters.image }}
   steps:
   - checkout: self
   # - template: ../../steps/dotnet/nuget-cache.yml

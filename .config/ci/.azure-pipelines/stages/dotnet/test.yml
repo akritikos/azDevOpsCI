@@ -16,6 +16,13 @@ stages:
   jobs:
     - template: ../../jobs/dotnet/test.yml
       parameters:
+        image: ubuntu-latest
+        sdkVersion: ${{ parameters.sdkVersion }}
+        configuration: ${{ parameters.configuration }}
+        buildArgs: ${{ parameters.buildArgs }}
+    - template: ../../jobs/dotnet/test.yml
+      parameters:
+        image: windows-latest
         sdkVersion: ${{ parameters.sdkVersion }}
         configuration: ${{ parameters.configuration }}
         buildArgs: ${{ parameters.buildArgs }}
