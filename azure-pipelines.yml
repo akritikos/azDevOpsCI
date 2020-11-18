@@ -22,3 +22,4 @@ pool:
   vmImage: ubuntu-latest
 stages:
   - template: .config/ci/.azure-pipelines/stages/general/semver.yml
+  - template: .config/ci/.azure-pipelines/stages/dotnet/build.yml

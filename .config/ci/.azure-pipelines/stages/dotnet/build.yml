@@ -1,0 +1,11 @@
+stages:
+- stage: Build
+  displayName: Builds artifacts
+  dependsOn: Version
+  jobs:
+  - job: Build
+    steps:
+    - checkout: self
+      fetchDepth: 1
+    # - template: ../../steps/dotnet/nuget-cache.yml
+    - template: ../../steps/dotnet/restore.yml
