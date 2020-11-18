@@ -33,7 +33,7 @@ stages:
       parameters:
         configuration: ${{ parameters.configuration }}
         buildArgs: ${{ parameters.buildArgs }}
-    - template: ../../steps/dotnet/build.yml
+    - template: ../../steps/dotnet/publish.yml
       parameters:
         configuration: ${{ parameters.configuration }}
         publishWeb: ${{ parameters.publishWeb }}
