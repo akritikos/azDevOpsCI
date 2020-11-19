@@ -6,7 +6,7 @@ parameters:
 steps:
 - template: ../../steps/dotnet/install-sdk.yml
   parameters:
-    sdkVersion: 3.1
+    sdkVersion: 3.x
 - ${{  if ne(variables['Build.Reason'], 'PullRequest') }}:
   - pwsh: ../codecov --file ${{ parameters.coverageDirectory }}/coverage.opencover.xml --branch "$(Build.SourceBranchName)" --sha "$(Build.SourceVersion)"
     displayName: Upload coverage to Codecov (CI)
