@@ -20,6 +20,7 @@ stages:
     - template: ../../jobs/dotnet/test.yml
       parameters:
         image: ubuntu-latest
+        useCache: false
         publishCoverage: true
         sdkVersion: ${{ parameters.sdkVersion }}
         configuration: ${{ parameters.configuration }}
@@ -27,6 +28,7 @@ stages:
     - template: ../../jobs/dotnet/test.yml
       parameters:
         image: windows-latest
+        useCache: false
         publishCoverage: false
         sdkVersion: ${{ parameters.sdkVersion }}
         configuration: ${{ parameters.configuration }}
