@@ -1,4 +1,7 @@
 parameters:
+  - name: publishCoverage
+    type: boolean
+    value: false
   - name: sdkVersion
     default: '5.x'
     type: string
@@ -17,6 +20,7 @@ stages:
     - template: ../../jobs/dotnet/test.yml
       parameters:
         image: ubuntu-latest
+        publishCoverage: true
         sdkVersion: ${{ parameters.sdkVersion }}
         configuration: ${{ parameters.configuration }}
         buildArgs: ${{ parameters.buildArgs }}
