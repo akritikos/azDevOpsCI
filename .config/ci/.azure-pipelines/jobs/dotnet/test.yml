@@ -65,11 +65,11 @@ jobs:
         summaryFile: ${{ parameters.summaryFile }}
     - template: ../../steps/general/publish-artifact.yml
       parameters:
-        PathtoPublish: ${{ parameters.coverageDirectory }}
-        ArtifactName: ${{ parameters.coverageArtifactName }}
+        pathtoPublish: ${{ parameters.coverageDirectory }}
+        artifactName: ${{ parameters.coverageArtifactName }}
     - template: ../../steps/general/sonar-scanner-end.yml
     - template: ../../steps/general/upload-codecov.yml
       parameters:
-        PathtoPublish: ${{ parameters.coverageDirectory }}
+        coverageDirectory: ${{ parameters.coverageDirectory }}
 
 
