@@ -20,6 +20,7 @@ trigger:
       - tests/*
 variables:
   - group: Environment
+  - group: DotNet
   - group: ApiKeys
 pool:
   vmImage: ubuntu-latest
