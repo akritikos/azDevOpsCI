@@ -17,6 +17,21 @@ parameters:
   - name: buildArgs
     type: string
     default: ''
+  - name: coverageTool
+    default: cobertura
+    type: string
+    values:
+    - cobertura
+    - jacoco
+  - name: summaryFile
+    default: '$(build.artifactStagingDirectory)/coverage/coverage.cobertura.xml'
+    type: 'string'
+  - name: coverageDirectory
+    type: string
+    default: $(build.artifactStagingDirectory)/coverage
+  - name: coverageArtifactName
+    type: string
+    default: $(Build.Repository.Name)-$(Build.BuildNumber)-coverage
 
 jobs:
 - job:
@@ -33,6 +48,10 @@ jobs:
   - ${{ if parameters.publishCoverage }}:
     - template: ../../steps/general/cover-tools.yml
   - template: ../../steps/dotnet/restore.yml
+  - ${{ if parameters.publishCoverage }}:
+    - template: ../../steps/general/sonar-scanner-begin.yml
+      parameters:
+        coverageDirectory: ${{ parameters.publishCoverage }}
   - template: ../../steps/dotnet/build.yml
     parameters:
       configuration: ${{ parameters.configuration }}
@@ -42,3 +61,12 @@ jobs:
       configuration: ${{ parameters.configuration }}
   - ${{ if parameters.publishCoverage }}:
     - template: ../../steps/general/publish-coverage.yml
+      parameters:
+        summaryFile: ${{ parameters.summaryFile }}
+    - template: ../../general/publish-artifact.yml
+      parameters:
+        PathtoPublish: ${{ parameters.coverageDirectory }}
+        ArtifactName: ${{ parameters.coverageArtifactName }}
+    - template: ../../steps/general/sonar-scanner-end.yml
+
+
