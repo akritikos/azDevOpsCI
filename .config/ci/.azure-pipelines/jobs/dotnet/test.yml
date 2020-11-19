@@ -4,7 +4,7 @@ parameters:
     default: ubuntu-latest
   - name: publishCoverage
     type: boolean
-    value: false
+    default: false
   - name: sdkVersion
     default: '5.x'
     type: string
@@ -26,7 +26,7 @@ jobs:
   - template: ../../steps/dotnet/install-sdk.yml
     parameters:
       sdkVersion: ${{ parameters.sdkVersion }}
-  - ${{ if ${{ parameters.sdkVersion }} }}:
+  - ${{ if ${{ parameters.publishCoverage }} }}:
     - template: ../../steps/general/coverage-tools.yml
   - template: ../../steps/dotnet/restore.yml
   - template: ../../steps/dotnet/build.yml
