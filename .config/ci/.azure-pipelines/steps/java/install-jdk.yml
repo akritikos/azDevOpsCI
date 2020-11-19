@@ -5,6 +5,7 @@ parameters:
 
 steps:
 - task: JavaToolInstaller@0
+  displayName: Install JDK ${{ parameters.jdkVersion }}
   inputs:
     versionSpec: ${{ parameters.jdkVersion }}
     jdkSourceOption: 'PreInstalled'
