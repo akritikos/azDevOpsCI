@@ -63,7 +63,7 @@ jobs:
     - template: ../../steps/general/publish-coverage.yml
       parameters:
         summaryFile: ${{ parameters.summaryFile }}
-    - template: ../../general/publish-artifact.yml
+    - template: ../../steps/general/publish-artifact.yml
       parameters:
         PathtoPublish: ${{ parameters.coverageDirectory }}
         ArtifactName: ${{ parameters.coverageArtifactName }}
