@@ -2,6 +2,9 @@ parameters:
   - name: sdkVersion
     default: '5.x'
     type: string
+  - name: useCache
+    type: bool
+    default: true
   - name: configuration
     type: string
     default: $(BuildConfiguration)
@@ -33,38 +36,22 @@ parameters:
 
 stages:
 - stage: Build
-  displayName: Builds artifacts
+  displayName: Build artifacts
   dependsOn: Version
   jobs:
-  - job: Build
-    steps:
-    - checkout: self
-      fetchDepth: 1
-    # - template: ../../steps/dotnet/nuget-cache.yml
-    - template: ../../steps/dotnet/install-sdk.yml
+    - template: ../../jobs/dotnet/build.yml
       parameters:
+        image: ubuntu-latest
+        useCache: ${{ parameters.useCache }}
+        producePackedArtifacts: true
         sdkVersion: ${{ parameters.sdkVersion }}
-    - template: ../../steps/dotnet/restore.yml
-    - template: ../../steps/dotnet/build.yml
-      parameters:
         configuration: ${{ parameters.configuration }}
         buildArgs: ${{ parameters.buildArgs }}
-    - template: ../../steps/dotnet/publish.yml
-      parameters:
-        configuration: ${{ parameters.configuration }}
         publishWeb: ${{ parameters.publishWeb }}
         outputPath: ${{ parameters.outputPath }}
-    - template: ../../steps/general/publish-artifact.yml
-      parameters:
         pathtoPublish: ${{ parameters.pathtoPublish }}
-        artifactName: ${{ parameters.publishArtifactName }}
-    - template: ../../steps/dotnet/pack.yml
-      parameters:
-        configuration: ${{ parameters.configuration }}
+        publishArtifactName: ${{ parameters.publishArtifactName }}
         projectsToPack: ${{ parameters.projectsToPack }}
         packDirectory: ${{ parameters.packDirectory }}
-    - template: ../../steps/general/publish-artifact.yml
-      parameters:
-        pathtoPublish: ${{ parameters.packDirectory }}
-        artifactName: ${{ parameters.nugetArtifactName }}
+        nugetArtifactName: ${{ parameters.nugetArtifactName }}
 
