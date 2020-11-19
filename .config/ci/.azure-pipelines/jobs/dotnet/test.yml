@@ -27,7 +27,7 @@ jobs:
     parameters:
       sdkVersion: ${{ parameters.sdkVersion }}
   - ${{ if parameters.publishCoverage }}:
-    - template: ../../steps/general/coverage-tools.yml
+    - template: ../../steps/general/cover-tools.yml
   - template: ../../steps/dotnet/restore.yml
   - template: ../../steps/dotnet/build.yml
     parameters:
@@ -36,3 +36,5 @@ jobs:
   - template: ../../steps/dotnet/test.yml
     parameters:
       configuration: ${{ parameters.configuration }}
+  - ${{ if parameters.publishCoverage }}:
+    - template: ../../steps/general/publish-coverage.yml
