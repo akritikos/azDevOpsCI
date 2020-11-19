@@ -71,5 +71,8 @@ jobs:
     - template: ../../steps/general/upload-codecov.yml
       parameters:
         coverageDirectory: ${{ parameters.coverageDirectory }}
+    - template: ../../steps/general/upload-coveralls.yml
+      parameters:
+        coverageDirectory: ${{ parameters.coverageDirectory }}
 
 
