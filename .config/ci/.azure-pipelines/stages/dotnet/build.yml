@@ -54,4 +54,19 @@ stages:
         projectsToPack: ${{ parameters.projectsToPack }}
         packDirectory: ${{ parameters.packDirectory }}
         nugetArtifactName: ${{ parameters.nugetArtifactName }}
+    - template: ../../jobs/dotnet/build.yml
+      parameters:
+        image: windows-latest
+        producePackedArtifacts: false
+        useCache: ${{ parameters.useCache }}
+        sdkVersion: ${{ parameters.sdkVersion }}
+        configuration: ${{ parameters.configuration }}
+        buildArgs: ${{ parameters.buildArgs }}
+        publishWeb: ${{ parameters.publishWeb }}
+        outputPath: ${{ parameters.outputPath }}
+        pathtoPublish: ${{ parameters.pathtoPublish }}
+        publishArtifactName: ${{ parameters.publishArtifactName }}
+        projectsToPack: ${{ parameters.projectsToPack }}
+        packDirectory: ${{ parameters.packDirectory }}
+        nugetArtifactName: ${{ parameters.nugetArtifactName }}
 
