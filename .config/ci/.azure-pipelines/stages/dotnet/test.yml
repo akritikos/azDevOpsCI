@@ -2,6 +2,9 @@ parameters:
   - name: sdkVersion
     default: '5.x'
     type: string
+  - name: useCache
+    type: bool
+    default: true
   - name: configuration
     type: string
     default: $(BuildConfiguration)

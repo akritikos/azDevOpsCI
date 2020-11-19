@@ -2,6 +2,9 @@ parameters:
   - name: image
     type: string
     default: ubuntu-latest
+  - name: useCache
+    type: bool
+    default: true
   - name: publishCoverage
     type: boolean
     default: false
@@ -22,7 +25,8 @@ jobs:
     vmImage: ${{ parameters.image }}
   steps:
   - checkout: self
-  # - template: ../../steps/dotnet/nuget-cache.yml
+  - ${{ if parameters.useCache }}:
+    - template: ../../steps/dotnet/nuget-cache.yml
   - template: ../../steps/dotnet/install-sdk.yml
     parameters:
       sdkVersion: ${{ parameters.sdkVersion }}

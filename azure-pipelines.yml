@@ -26,4 +26,8 @@ pool:
 stages:
   - template: .config/ci/.azure-pipelines/stages/general/semver.yml
   - template: .config/ci/.azure-pipelines/stages/dotnet/build.yml
+    parameters:
+      useCache: false
   - template: .config/ci/.azure-pipelines/stages/dotnet/test.yml
+    parameters:
+      useCache: false
