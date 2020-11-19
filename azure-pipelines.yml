@@ -18,6 +18,9 @@ trigger:
       - azure-pipelines.yml
       - src/*
       - tests/*
+variables:
+  - group: Environment
+  - group: ApiKeys
 pool:
   vmImage: ubuntu-latest
 stages:
