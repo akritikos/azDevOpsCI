@@ -7,6 +7,9 @@ parameters:
   default: '"$(Agent.OS)"'
 - name: 'path'
   type: 'string'
+- name: restoreKeys
+  type: string
+  default: '"$(Agent.OS)"'
 
 steps:
 - task: Cache@2

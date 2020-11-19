@@ -3,7 +3,7 @@ parameters:
     default: '5.x'
     type: string
   - name: useCache
-    type: bool
+    type: boolean
     default: true
   - name: configuration
     type: string
