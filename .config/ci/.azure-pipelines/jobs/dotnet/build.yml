@@ -3,10 +3,10 @@ parameters:
     type: string
     default: ubuntu-latest
   - name: useCache
-    type: bool
+    type: boolean
     default: true
   - name: producePackedArtifacts
-    type: bool
+    type: boolean
     default: false
   - name: sdkVersion
     default: '5.x'

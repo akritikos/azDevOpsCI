@@ -3,7 +3,7 @@ parameters:
     default: '5.x'
     type: string
   - name: useCache
-    type: bool
+    type: boolean
     default: true
   - name: configuration
     type: string
@@ -42,8 +42,8 @@ stages:
     - template: ../../jobs/dotnet/build.yml
       parameters:
         image: ubuntu-latest
-        useCache: ${{ parameters.useCache }}
         producePackedArtifacts: true
+        useCache: ${{ parameters.useCache }}
         sdkVersion: ${{ parameters.sdkVersion }}
         configuration: ${{ parameters.configuration }}
         buildArgs: ${{ parameters.buildArgs }}
