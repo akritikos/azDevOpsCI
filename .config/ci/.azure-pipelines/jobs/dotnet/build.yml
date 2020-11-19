@@ -41,7 +41,7 @@ parameters:
 
 
 jobs:
-- job: Build
+- job:
   displayName: on ${{ parameters.image }}
   steps:
   - checkout: self
