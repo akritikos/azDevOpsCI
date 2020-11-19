@@ -16,4 +16,5 @@ steps:
   inputs:
     key: ${{ parameters.key }}
     path: ${{ parameters.path }}
+    restoreKeys: ${{ parameters.restoreKeys }}
   displayName: Restore ${{ parameters.artifactType }} cache
