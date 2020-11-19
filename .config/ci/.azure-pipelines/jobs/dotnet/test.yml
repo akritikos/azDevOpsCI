@@ -68,5 +68,8 @@ jobs:
         PathtoPublish: ${{ parameters.coverageDirectory }}
         ArtifactName: ${{ parameters.coverageArtifactName }}
     - template: ../../steps/general/sonar-scanner-end.yml
+    - template: ../../steps/general/upload-codecov.yml
+      parameters:
+        PathtoPublish: ${{ parameters.coverageDirectory }}
 
 

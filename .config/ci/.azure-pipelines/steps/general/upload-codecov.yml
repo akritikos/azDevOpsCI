@@ -1,0 +1,12 @@
+parameters:
+  - name: coverageDirectory
+    type: string
+    default: $(build.artifactStagingDirectory)/coverage
+
+steps:
+- ${{  if ne(variables['Build.Reason'], 'PullRequest') }}:
+  - pwsh: ../codecov --file ${{ parameters.coverageDirectory }}/coverage.opencover.xml --branch "$(Build.SourceBranchName)" --sha "$(Build.SourceVersion)"
+    displayName: Upload coverage to Codecov (CI)
+- ${{ if eq(variables['Build.Reason'], 'PullRequest') }}:
+  - pwsh: ../codecov --file ${{ parameters.coverageDirectory }}/coverage.opencover.xml --branch "$(Build.SourceBranchName)" --sha "$(Build.SourceVersion)" --pr "$(System.PullRequest.PullRequestId)"
+    displayName: Upload coverage to Codecov (PR)
