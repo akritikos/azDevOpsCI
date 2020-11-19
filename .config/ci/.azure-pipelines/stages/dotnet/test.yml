@@ -33,11 +33,3 @@ stages:
         sdkVersion: ${{ parameters.sdkVersion }}
         configuration: ${{ parameters.configuration }}
         buildArgs: ${{ parameters.buildArgs }}
-    - template: ../../jobs/dotnet/test.yml
-      parameters:
-        image: macOS-latest
-        useCache: false
-        publishCoverage: false
-        sdkVersion: ${{ parameters.sdkVersion }}
-        configuration: ${{ parameters.configuration }}
-        buildArgs: ${{ parameters.buildArgs }}
