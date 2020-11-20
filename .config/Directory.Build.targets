@@ -14,10 +14,4 @@
       </AssemblyAttribute>
     </ItemGroup>
   </Target>
-
-  <!-- <Target Name="Test">
-
-  <Target Name="VariableStatus" Inputs="@PackageReference" Outputs="%(PackageReference.Identity)">
-    <Message Importance="high" Text="%(PackageReference.Identity)"/>
-  </Target> -->
 </Project>
