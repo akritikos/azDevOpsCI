@@ -1,5 +1,7 @@
-namespace Calculator.Tests
+namespace Kritikos.Calculator.Tests
 {
+	using Kritikos.Calculator;
+
 	using Xunit;
 
 	public class AdditionTests

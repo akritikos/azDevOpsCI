@@ -1,4 +1,4 @@
-namespace Calculator
+namespace Kritikos.Calculator
 {
 	using System;
 
