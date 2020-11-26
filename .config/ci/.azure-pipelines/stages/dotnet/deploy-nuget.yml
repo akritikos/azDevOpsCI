@@ -20,9 +20,6 @@ stages:
     - Test
   condition: succeeded()
   jobs:
-    - download: current
-      artifact: ${{ parameters.packagesToPush }}
-      patterns: '**/*nupkg'
     - template: ../../jobs/dotnet/deploy-nuget.yml
       parameters:
         packagesToPush:  $(Pipeline.Workspace)/${{ parameters.artifact }}/*.nupkg
