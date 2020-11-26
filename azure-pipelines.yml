@@ -36,7 +36,13 @@ stages:
       useCache: false
   - template: .config/ci/.azure-pipelines/stages/dotnet/deploy-nuget.yml
     parameters:
-      stageName: ReleaseCI
+      stageName: CI
+      environment: kritikos-io
+      artifact: nuget
+      feedName: kritikos
+  - template: .config/ci/.azure-pipelines/stages/dotnet/deploy-nuget.yml
+    parameters:
+      stageName: Release
       environment: kritikos-io
       artifact: nuget
       feedName: kritikos
