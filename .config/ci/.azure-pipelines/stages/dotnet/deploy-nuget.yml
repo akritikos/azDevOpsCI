@@ -1,0 +1,27 @@
+parameters:
+  - name: stageName
+    type: string
+    default: Release
+  - name: packagesToPush
+    type: string
+    default: $(Pipeline.Workspace)/pack/*.nupkg
+  - name: feedName
+    type: string
+    default: 'Kritikos'
+  - name: environment
+    type: string
+    default: 'kritikos-io'
+
+stages:
+- stage: ${{ parameters.stageName }}
+  displayName: Build artifacts
+  dependsOn:
+    - Build
+    - Test
+  condition: succeeded()
+  jobs:
+    - template: ../../jobs/dotnet/deploy-nuget.yml
+      parameters:
+        packagesToPush: ${{ parameters.packagesToPush }}
+        feedName: ${{ parameters.feedName }}
+        environment: ${{ parameters.environment }}

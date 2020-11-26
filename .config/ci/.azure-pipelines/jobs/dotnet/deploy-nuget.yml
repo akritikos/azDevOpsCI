@@ -1,0 +1,23 @@
+parameters:
+  - name: packagesToPush
+    type: string
+    default: $(Pipeline.Workspace)/pack/*.nupkg
+  - name: feedName
+    type: string
+    default: 'Kritikos'
+  - name: environment
+    type: string
+    default: 'kritikos-io'
+
+jobs:
+- deployment:
+  displayName: Push nugets to ${{ parameters.environment }}
+  environment: ${{ parameters.environment }}
+  strategy:
+    runOnce:
+      deploy:
+        steps:
+          - template: ../../steps/dotnet/nuget-push.yml
+            parameters:
+              packagesToPush: ${{ parameters.packagesToPush }}
+              feedName: ${{ parameters.feedName }}
