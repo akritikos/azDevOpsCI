@@ -14,7 +14,7 @@ parameters:
 
 stages:
 - stage: ${{ parameters.stageName }}
-  displayName: Build artifacts
+  displayName: Release to ${{ parameters.environment }} environment
   dependsOn:
     - Build
     - Test
