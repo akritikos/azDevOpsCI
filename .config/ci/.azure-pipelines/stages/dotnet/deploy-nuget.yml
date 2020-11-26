@@ -24,4 +24,4 @@ stages:
       parameters:
         artifact: ${{ parameters.artifact }}
         feedName: ${{ parameters.feedName }}
-        environment: ${{ parameters.environment }}
+        environment: ${{ parameters.stageName }}
