@@ -10,7 +10,7 @@ parameters:
     default: 'kritikos-io'
 
 jobs:
-- deployment:
+- deployment: ${{ parameters.environment }}
   displayName: Push nugets to ${{ parameters.environment }}
   environment: ${{ parameters.environment }}
   strategy:
