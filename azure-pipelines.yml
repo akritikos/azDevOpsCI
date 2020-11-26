@@ -38,5 +38,5 @@ stages:
     parameters:
       stageName: ReleaseCI
       environment: kritikos-io
-      packagesToPush: $(Pipeline.Workspace)/pack/*.nupkg
+      packagesToPush: $(Pipeline.Workspace)/nuget/*.nupkg
       feedName: kritikos

@@ -1,7 +1,7 @@
 parameters:
   - name: packagesToPush
     type: string
-    default: $(Pipeline.Workspace)/pack/*.nupkg
+    default: $(Pipeline.Workspace)/nuget/*.nupkg
   - name: feedName
     type: string
     default: 'Kritikos'
