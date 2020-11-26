@@ -22,6 +22,6 @@ stages:
   jobs:
     - template: ../../jobs/dotnet/deploy-nuget.yml
       parameters:
-        packagesToPush:  $(Pipeline.Workspace)/${{ parameters.artifact }}/*.nupkg
+        artifact: ${{ parameters.artifact }}
         feedName: ${{ parameters.feedName }}
         environment: ${{ parameters.environment }}

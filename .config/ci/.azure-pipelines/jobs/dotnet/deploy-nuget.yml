@@ -1,7 +1,7 @@
 parameters:
-  - name: packagesToPush
+  - name: artifact
     type: string
-    default: $(Pipeline.Workspace)/nuget/*.nupkg
+    default: nuget
   - name: feedName
     type: string
     default: 'Kritikos'
@@ -17,7 +17,9 @@ jobs:
     runOnce:
       deploy:
         steps:
+          - download: current
+            artifact: ${{ parameters.artifact }}
           - template: ../../steps/dotnet/nuget-push.yml
             parameters:
-              packagesToPush: ${{ parameters.packagesToPush }}
+              packagesToPush: $(Pipeline.Workspace)/${{ parameters.artifact }}/*.nupkg
               feedName: ${{ parameters.feedName }}
