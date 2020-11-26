@@ -2,9 +2,9 @@ parameters:
   - name: stageName
     type: string
     default: Release
-  - name: packagesToPush
+  - name: artifact
     type: string
-    default: $(Pipeline.Workspace)/nuget/*.nupkg
+    default: nuget
   - name: feedName
     type: string
     default: 'Kritikos'
@@ -20,8 +20,11 @@ stages:
     - Test
   condition: succeeded()
   jobs:
+    - download: current
+      artifact: ${{ parameters.packagesToPush }}
+      patterns: '**/*nupkg'
     - template: ../../jobs/dotnet/deploy-nuget.yml
       parameters:
-        packagesToPush: ${{ parameters.packagesToPush }}
+        packagesToPush:  $(Pipeline.Workspace)/${{ parameters.artifact }}/*.nupkg
         feedName: ${{ parameters.feedName }}
         environment: ${{ parameters.environment }}
