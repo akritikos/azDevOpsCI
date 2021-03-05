@@ -39,11 +39,6 @@ stages:
   displayName: Build artifacts
   dependsOn: Version
   jobs:
-    - task: DownloadBuildArtifacts@0
-      inputs:
-        downloadType: single
-        artifactName: AssemblyInfo
-        downloadPath: Build.SourcesDirectory
     - template: ../../jobs/dotnet/build.yml
       parameters:
         image: ubuntu-latest

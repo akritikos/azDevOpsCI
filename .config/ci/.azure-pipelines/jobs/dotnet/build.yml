@@ -52,6 +52,12 @@ jobs:
     parameters:
       sdkVersion: ${{ parameters.sdkVersion }}
   - template: ../../steps/dotnet/restore.yml
+  - task: DownloadBuildArtifacts@0
+    displayName: Downloads AssemblyInfo
+    inputs:
+      downloadType: single
+      artifactName: AssemblyInfo
+      downloadPath: Build.SourcesDirectory
   - template: ../../steps/dotnet/build.yml
     parameters:
       configuration: ${{ parameters.configuration }}

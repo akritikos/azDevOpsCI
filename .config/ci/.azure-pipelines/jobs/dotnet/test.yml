@@ -48,6 +48,12 @@ jobs:
   - ${{ if parameters.publishCoverage }}:
     - template: ../../steps/general/cover-tools.yml
   - template: ../../steps/dotnet/restore.yml
+  - task: DownloadBuildArtifacts@0
+    displayName: Downloads AssemblyInfo
+    inputs:
+      downloadType: single
+      artifactName: AssemblyInfo
+      downloadPath: Build.SourcesDirectory
   - ${{ if parameters.publishCoverage }}:
     - template: ../../steps/general/sonar-scanner-begin.yml
       parameters:
