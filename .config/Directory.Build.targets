@@ -1,4 +1,8 @@
 <Project>
+  <Target Name="RestoreNpmAssets">
+    <Exec Command="npm install" />
+  </Target>
+
   <Target Name="AddInternalsVisibleTo" BeforeTargets="BeforeCompile">
     <!-- Handle InternalsVisibleTo -->
     <ItemGroup Condition="'@(InternalsVisibleTo->Count())' &gt; 0">
@@ -14,4 +18,14 @@
       </AssemblyAttribute>
     </ItemGroup>
   </Target>
+
+  <PropertyGroup Label="SDK Functionality" Condition="'$(UsingMicrosoftNETSdkWeb)' == 'True' OR '$(UsingMicrosoftNETSdkWorker)' == 'True'">
+    <IsPackable>false</IsPackable>
+    <PackAsTool>false</PackAsTool>
+  </PropertyGroup>
+
+  <PropertyGroup Label="Test Functionality" Condition="$(IsTest) == 'true'">
+    <IsPackable>false</IsPackable>
+    <PackAsTool>false</PackAsTool>
+  </PropertyGroup>
 </Project>
