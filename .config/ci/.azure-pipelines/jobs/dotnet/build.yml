@@ -57,7 +57,7 @@ jobs:
     inputs:
       downloadType: single
       artifactName: AssemblyInfo
-      downloadPath: Build.SourcesDirectory
+      downloadPath: $(Build.SourcesDirectory)
   - template: ../../steps/dotnet/build.yml
     parameters:
       configuration: ${{ parameters.configuration }}

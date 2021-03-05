@@ -11,6 +11,6 @@ stages:
         displayName: Set SemVer from git history
       - template: ../../steps/general/publish-artifact.yml
         parameters:
-          pathtoPublish: Build.SourcesDirectory/AssemblyInfo.cs
+          pathtoPublish: $(Build.SourcesDirectory)/AssemblyInfo.cs
           artifactName: AssemblyInfo
 

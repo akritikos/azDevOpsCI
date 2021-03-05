@@ -53,7 +53,7 @@ jobs:
     inputs:
       downloadType: single
       artifactName: AssemblyInfo
-      downloadPath: Build.SourcesDirectory
+      downloadPath: $(Build.SourcesDirectory)
   - ${{ if parameters.publishCoverage }}:
     - template: ../../steps/general/sonar-scanner-begin.yml
       parameters:
