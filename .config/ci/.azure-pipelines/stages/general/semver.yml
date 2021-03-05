@@ -7,6 +7,10 @@ stages:
       - template: ../../steps/general/dotnet-tool.yml
         parameters:
           toolName: gitversion.tool
-      - pwsh: ../dotnet-gitversion /output buildserver
+      - pwsh: ../dotnet-gitversion /output buildserver /updateassemblyinfo AssemblyInfo.cs /ensureassemblyinfo
         displayName: Set SemVer from git history
+      - template: ../../steps/general/publish-artifact.yml
+        parameters:
+          pathtoPublish: Build.SourcesDirectory/AssemblyInfo.cs
+          artifactName: AssemblyInfo
 

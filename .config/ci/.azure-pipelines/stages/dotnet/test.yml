@@ -17,6 +17,11 @@ stages:
   displayName: Run tests
   dependsOn: Version
   jobs:
+    - task: DownloadBuildArtifacts@0
+      inputs:
+        downloadType: single
+        artifactName: AssemblyInfo
+        downloadPath: Build.SourcesDirectory
     - template: ../../jobs/dotnet/test.yml
       parameters:
         image: ubuntu-latest
